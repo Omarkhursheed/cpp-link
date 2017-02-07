@@ -67,7 +67,15 @@ void linkedList :: insertNode()
       head -> next = first;
       first = head;
       curr = first;
-      listLength++;
+    }
+    else if (n == listLength)
+    {
+      for (i = 0; i < listLength - 1; i++)
+      {
+        curr = curr -> next;
+      }
+      curr -> next = head;
+      head -> next = NULL;
     }
     else
     {
@@ -233,7 +241,13 @@ class cLinkedList : public linkedList
       cin >> n;
       if (n < listLength && listLength != 0)
       {
-        if (n == 0 && listLength > 1)
+        if (n == 0 && listLength == 2)
+        {
+          temp = first;
+          first = first -> next;
+          delete temp;
+        }
+        else if (n == 0 && listLength > 2)
         {
           curr = first;
           temp = first;
@@ -241,16 +255,20 @@ class cLinkedList : public linkedList
           {
             curr = curr -> next;
           }
-          if (temp -> next != NULL)
-          {
-            curr -> next = temp -> next;
-          }
+          
+          
+          curr -> next = temp -> next;
+          
+          first = temp -> next;
           delete temp;
         }
         else if (n == 0 && listLength == 1)
         {
+          temp = first;
           first = NULL;
+          delete temp;
         }
+
         else
         {
           curr = first;
