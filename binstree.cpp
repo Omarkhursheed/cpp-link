@@ -45,9 +45,13 @@ int main(int argc, char const *argv[])
     srand((unsigned)time(NULL));
     for (int i = 0; i < n; i++)
     {
-      arr[i] = (rand() % 10000) + 1;
+      arr[i] = (rand() % 100) + 1;
     }
-
+    cout << endl << "The random elements generated:" << endl;
+    for (int d = 0; d < n; d++)
+    {
+      cout << arr[d] << endl;
+    }
   treenode * stuff = makeBST(arr, n);
   menu(stuff);
   }
@@ -97,7 +101,7 @@ void preorder(treenode * ptr)
 {
   if (ptr)
   {
-    cout << ptr -> data << endl;
+    cout << ptr -> data << "\t";
     preorder (ptr -> left);
     preorder (ptr -> right);
   }
@@ -108,7 +112,7 @@ void inorder(treenode * ptr)
   if (ptr)
   {
     inorder(ptr -> left);
-    cout << ptr -> data << endl;
+    cout << ptr -> data << "\t";
     inorder(ptr -> right);
   }
 }
@@ -119,7 +123,7 @@ void postorder(treenode * ptr)
   {
     postorder(ptr->left);
     postorder(ptr->right);
-    cout << ptr -> data << endl;
+    cout << ptr -> data << "\t";
   }
 }
 
@@ -127,6 +131,7 @@ void menu(treenode * node)
 {
   treenode * temp = node;
   int c;
+  cout << endl;
   cout << "1. Preorder traversal" << endl;
   cout << "2. Inorder traversal" << endl;
   cout << "3. Postorder traversal" << endl;
